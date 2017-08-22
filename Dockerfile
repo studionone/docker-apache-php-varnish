@@ -37,6 +37,3 @@ RUN apt-get update && apt-get install -y autoconf \
 COPY conf/default.vcl.m4 /opt/default.vcl.m4
 COPY conf/supervisor_conf.d/varnish.conf /etc/supervisor/conf.d/varnish.conf
 
-# Expose port 80 for nginx-proxy to pick up. This is an expedia requirement
-EXPOSE 8080
-
