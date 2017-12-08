@@ -8,12 +8,12 @@ backend default {
 
 sub vcl_recv {
 
-  #Allow for cache to be by passed for dev
-  if ( req.url ~ "^/(.*)\?no-cache" ) {
+  # Allow for cache to be bypassed for dev
+  if (req.url ~ "[\?&]no-cache") {
     return (pass);
   }
 
-  #unset all cookies regardless of what they are. We current don't need any cookies for explore
+  # Unset all cookies regardless of what they are. We currently don't need any cookies for explore
   unset req.http.cookie;
 }
 
@@ -30,7 +30,7 @@ sub vcl_hash {
     hash_data(server.ip);
   }
 
-  # hash cookies for requests that have them
+  # Hash cookies for requests that have them
   if (req.http.Cookie) {
     hash_data(req.http.Cookie);
   }
