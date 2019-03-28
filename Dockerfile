@@ -1,4 +1,4 @@
-FROM studionone/apache-php:7.1
+FROM studionone/apache-php:7.3
 
 # Varnish is being installed from source because we need to VCL mod to allow for dynamic configurations
 RUN apt-get update && apt-get install -y autoconf \
