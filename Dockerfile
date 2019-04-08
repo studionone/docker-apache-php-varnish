@@ -35,7 +35,7 @@ RUN cd /tmp/vmod-querystring-2.0.1 \
       && sh configure \
       && make \
       && make install \
-      && cd ../
+      && cd ../ \
       && rm -rf /tmp/vmod-querystring-2.0.1 \
       && ldconfig
 
