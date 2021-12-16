@@ -1,4 +1,4 @@
-FROM studionone/apache-php:8.0
+FROM studionone/apache-php:8.1
 
 ENV VARNISH_VERSION 6.5.2~stretch-1
 
@@ -14,8 +14,8 @@ RUN apt-get update && apt-get install -y \
       libvarnishapi-dev \
       libtool \
       pkg-config \
-      python-docutils \
-      python-sphinx \
+      sphinx-doc \
+      sphinx-common \
       apt-transport-https \
       debian-archive-keyring \
       wget
