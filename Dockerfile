@@ -1,6 +1,6 @@
 FROM studionone/apache-php:8.1
 
-ENV VARNISH_VERSION 6.5.2~stretch-1
+ENV VARNISH_VERSION 7.0.1-1~stretch
 
 # Varnish is being installed from source because we need to VCL mod to allow for dynamic configurations
 RUN apt-get update && apt-get install -y \
@@ -21,9 +21,9 @@ RUN apt-get update && apt-get install -y \
       wget
 
 # Add the Varnish Cache gpg key to the keyring used by APT:
-RUN wget https://packagecloud.io/varnishcache/varnish65/gpgkey -O - | apt-key add - \
-    && echo "deb https://packagecloud.io/varnishcache/varnish65/debian/ stretch main" | tee -a /etc/apt/sources.list.d/varnishcache_varnish65.list \
-    && echo "deb-src https://packagecloud.io/varnishcache/varnish65/debian/ stretch main" | tee -a /etc/apt/sources.list.d/varnishcache_varnish65.list \
+RUN wget https://packagecloud.io/varnishcache/varnish70/gpgkey -O - | apt-key add - \
+    && echo "deb https://packagecloud.io/varnishcache/varnish70/debian/ stretch main" | tee -a /etc/apt/sources.list.d/varnishcache_varnish70.list \
+    && echo "deb-src https://packagecloud.io/varnishcache/varnish70/debian/ stretch main" | tee -a /etc/apt/sources.list.d/varnishcache_varnish70.list \
     && echo "deb http://ftp.au.debian.org/debian stretch main " | tee -a /etc/apt/sources.list # to install libjemalloc1
 
 # Varnish
@@ -33,15 +33,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Varnish querystring module
 RUN cd /tmp \
-    && wget https://github.com/Dridi/libvmod-querystring/releases/download/v2.0.2/vmod-querystring-2.0.2.tar.gz \
-    && tar xfz vmod-querystring-2.0.2.tar.gz \
-    && rm -rf /tmp/vmod-querystring-2.0.2.tar.gz \
-    && cd /tmp/vmod-querystring-2.0.2 \
+    && wget https://github.com/Dridi/libvmod-querystring/releases/download/v2.0.3/vmod-querystring-2.0.3.tar.gz \
+    && tar xfz vmod-querystring-2.0.3.tar.gz \
+    && rm -rf /tmp/vmod-querystring-2.0.3.tar.gz \
+    && cd /tmp/vmod-querystring-2.0.3 \
     && sh configure \
     && make \
     && make install \
     && cd ../ \
-    && rm -rf /tmp/vmod-querystring-2.0.2 \
+    && rm -rf /tmp/vmod-querystring-2.0.3 \
     && ldconfig
 
 # Varnish defult configuration file
